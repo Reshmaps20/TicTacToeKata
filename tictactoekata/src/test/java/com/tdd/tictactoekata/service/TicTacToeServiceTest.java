@@ -19,5 +19,15 @@ public class TicTacToeServiceTest {
 
 		assertTrue(result.contains("Move completed"));
 	}
+	
+	@Test
+	public void testMakeMove_PlayerMakesInvalidMove_ReturnInvalidMove() {
+
+		PlayerMove player = new PlayerMove(3, 0, 'X');
+
+		String result = ticTacToeService.makeMove(player);
+
+		assertTrue(result.contains("Invalid move"));
+	}
 
 }
