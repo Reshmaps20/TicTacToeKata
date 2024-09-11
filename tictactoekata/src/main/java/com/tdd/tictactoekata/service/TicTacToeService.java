@@ -8,4 +8,8 @@ public class TicTacToeService {
 		return "Move completed!";
 	}
 
+	public String resetGame() {
+		return "Game Reset!";
+	}
+
 }
