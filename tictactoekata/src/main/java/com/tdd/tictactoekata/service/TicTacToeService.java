@@ -1,8 +1,10 @@
 package com.tdd.tictactoekata.service;
 
 import java.util.Arrays;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import com.tdd.tictactoekata.constants.GameConstants;
 import com.tdd.tictactoekata.model.PlayerMove;
 
 public class TicTacToeService {
@@ -26,24 +28,24 @@ public class TicTacToeService {
 		char currentPlayer = playerMove.getPlayer();
 
 		if (gameWon || gameDraw) {
-			return "Game is already over. Please restart to play again.";
+			return GameConstants.GAME_OVER;
 		}
 		if (!isValidMove(row, col)) {
-			return "Invalid move! Row and column must be between 0 and 2, and the cell must be empty.";
+			return GameConstants.INVALID_MOVE;
 		}
 
 		board[row][col] = currentPlayer;
 
 		if (isBoardFull()) {
 			gameDraw = true;
-			return "The game is a draw!";
+			return GameConstants.DRAW;
 		}
 		if (checkWin(currentPlayer)) {
 			gameWon = true;
-			return "Player " + currentPlayer + " wins!";
+			return String.format(GameConstants.WINNER, currentPlayer, boardToString());
 		}
 
-		return "Move completed!";
+		return String.format(GameConstants.MOVE_COMPELETED, boardToString());
 
 	}
 
@@ -70,11 +72,16 @@ public class TicTacToeService {
 		return IntStream.of(row, col).allMatch(i -> i >= 0 && i < 3) && board[row][col] == ' ';
 	}
 
+	private Object boardToString() {
+		return Arrays.stream(board).map(row -> new String(row).replace("", " ").trim())
+				.collect(Collectors.joining("\n"));
+	}
+
 	public String resetGame() {
 		initializeBoard();
 		gameWon = false;
 		gameDraw = false;
-		return "Game Reset!";
+		return GameConstants.GAME_RESET;
 	}
 
 }
