@@ -4,9 +4,12 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import org.springframework.stereotype.Service;
+
 import com.tdd.tictactoekata.constants.GameConstants;
 import com.tdd.tictactoekata.model.PlayerMove;
 
+@Service
 public class TicTacToeService {
 
 	private char[][] board = new char[3][3];
