@@ -36,17 +36,21 @@ public class TicTacToeService {
 
 		board[row][col] = currentPlayer;
 
+		return checkWin(currentPlayer) ? handleWin(currentPlayer) : handleDrawOrContinue();
+
+	}
+
+	private String handleWin(char currentPlayer) {
+		gameWon = true;
+		return String.format(GameConstants.WINNER, currentPlayer, boardToString());
+	}
+
+	private String handleDrawOrContinue() {
 		if (isBoardFull()) {
 			gameDraw = true;
 			return GameConstants.DRAW;
 		}
-		if (checkWin(currentPlayer)) {
-			gameWon = true;
-			return String.format(GameConstants.WINNER, currentPlayer, boardToString());
-		}
-
 		return String.format(GameConstants.MOVE_COMPELETED, boardToString());
-
 	}
 
 	private boolean checkWin(char currentPlayer) {
