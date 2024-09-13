@@ -49,6 +49,16 @@ public class TicTacToeServiceTest {
 
 		assertTrue(result.contains("Player X wins!"));
 	}
+	
+	@Test
+	public void testMakeMove_PlayerWinsByCompletingAColumn_ReturnPlayerWhoWins() {
+
+		ticTacToeService.makeMove(new PlayerMove(0, 0, 'O')); 
+	    ticTacToeService.makeMove(new PlayerMove(1, 0, 'O')); 
+	    String result = ticTacToeService.makeMove(new PlayerMove(2, 0, 'O'));
+
+		assertTrue(result.contains("Player O wins!"));
+	}
 
 	private String fillBoard() {
 
