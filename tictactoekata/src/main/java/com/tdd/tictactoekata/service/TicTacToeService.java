@@ -71,7 +71,10 @@ public class TicTacToeService {
 	}
 
 	public String resetGame() {
-		return "Game Rest!";
+		initializeBoard();
+		gameWon = false;
+		gameDraw = false;
+		return "Game Reset!";
 	}
 
 }

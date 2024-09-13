@@ -93,4 +93,12 @@ public class TicTacToeServiceTest {
 		}
 		return result;
 	}
+	
+	@Test
+	public void testReset_ResetTheGame_ReturnGameReset() {
+
+		String result = ticTacToeService.resetGame();
+
+		assertTrue(result.contains("Game Reset!"));
+	}
 }
