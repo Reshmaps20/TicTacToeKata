@@ -2,6 +2,8 @@ package com.tdd.tictactoekata.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.stream.IntStream;
+
 import org.junit.jupiter.api.Test;
 
 import com.tdd.tictactoekata.model.PlayerMove;
@@ -19,7 +21,7 @@ public class TicTacToeServiceTest {
 
 		assertTrue(result.contains("Move completed"));
 	}
-	
+
 	@Test
 	public void testMakeMove_PlayerMakesInvalidMove_ReturnInvalidMove() {
 
