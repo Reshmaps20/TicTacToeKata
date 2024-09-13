@@ -32,4 +32,22 @@ public class TicTacToeServiceTest {
 		assertTrue(result.contains("Invalid move"));
 	}
 
+	@Test
+	public void testMakeMove_CheckBoardIsFull_ReturnGameIsDraw() {
+
+		String result = fillBoard();
+
+		assertTrue(result.contains("The game is a draw!"));
+	}
+
+	private String fillBoard() {
+
+		String result = "";
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				result = ticTacToeService.makeMove(new PlayerMove(i, j, 'X'));
+			}
+		}
+		return result;
+	}
 }
