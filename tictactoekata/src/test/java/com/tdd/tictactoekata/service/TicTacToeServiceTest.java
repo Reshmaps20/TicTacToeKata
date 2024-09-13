@@ -39,43 +39,56 @@ public class TicTacToeServiceTest {
 
 		assertTrue(result.contains("The game is a draw!"));
 	}
-	
+
 	@Test
 	public void testMakeMove_PlayerWinsByCompletingARow_ReturnPlayerWhoWins() {
 
-		ticTacToeService.makeMove(new PlayerMove(0, 0, 'X')); 
-	    ticTacToeService.makeMove(new PlayerMove(0, 1, 'X')); 
-	    String result = ticTacToeService.makeMove(new PlayerMove(0, 2, 'X'));
+		ticTacToeService.makeMove(new PlayerMove(0, 0, 'X'));
+		ticTacToeService.makeMove(new PlayerMove(0, 1, 'X'));
+		String result = ticTacToeService.makeMove(new PlayerMove(0, 2, 'X'));
 
 		assertTrue(result.contains("Player X wins!"));
 	}
-	
+
 	@Test
 	public void testMakeMove_PlayerWinsByCompletingAColumn_ReturnPlayerWhoWins() {
 
-		ticTacToeService.makeMove(new PlayerMove(0, 0, 'O')); 
-	    ticTacToeService.makeMove(new PlayerMove(1, 0, 'O')); 
-	    String result = ticTacToeService.makeMove(new PlayerMove(2, 0, 'O'));
+		ticTacToeService.makeMove(new PlayerMove(0, 0, 'O'));
+		ticTacToeService.makeMove(new PlayerMove(1, 0, 'O'));
+		String result = ticTacToeService.makeMove(new PlayerMove(2, 0, 'O'));
 
 		assertTrue(result.contains("Player O wins!"));
 	}
-	
+
 	@Test
 	public void testMakeMove_PlayerWinsByCompletingADiagonal_ReturnPlayerWhoWins() {
 
-		ticTacToeService.makeMove(new PlayerMove(0, 0, 'O')); 
-	    ticTacToeService.makeMove(new PlayerMove(1, 1, 'O')); 
-	    String result = ticTacToeService.makeMove(new PlayerMove(2, 2, 'O'));
+		ticTacToeService.makeMove(new PlayerMove(0, 0, 'O'));
+		ticTacToeService.makeMove(new PlayerMove(1, 1, 'O'));
+		String result = ticTacToeService.makeMove(new PlayerMove(2, 2, 'O'));
 
 		assertTrue(result.contains("Player O wins!"));
+	}
+
+	@Test
+	public void testMakeMove_CheckTheGameIsWonOrDraw_ReturnGameOver() {
+
+		ticTacToeService.makeMove(new PlayerMove(0, 0, 'O'));
+		ticTacToeService.makeMove(new PlayerMove(1, 1, 'O'));
+		ticTacToeService.makeMove(new PlayerMove(2, 2, 'O'));
+		String result = ticTacToeService.makeMove(new PlayerMove(1, 0, 'X'));
+
+		assertTrue(result.contains("Game is already over"));
 	}
 
 	private String fillBoard() {
 
 		String result = "";
+		char[][] moves = { { 'X', 'O', 'X' }, { 'O', 'O', 'X' }, { 'X', 'X', 'O' } };
+
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
-				result = ticTacToeService.makeMove(new PlayerMove(i, j, 'X'));
+				result = ticTacToeService.makeMove(new PlayerMove(i, j, moves[i][j]));
 			}
 		}
 		return result;

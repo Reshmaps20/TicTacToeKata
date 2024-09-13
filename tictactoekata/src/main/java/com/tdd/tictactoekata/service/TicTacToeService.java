@@ -25,6 +25,9 @@ public class TicTacToeService {
 		int col = playerMove.getColumn();
 		char currentPlayer = playerMove.getPlayer();
 
+		if (gameWon || gameDraw) {
+			return "Game is already over. Please restart to play again.";
+		}
 		if (!isValidMove(row, col)) {
 			return "Invalid move! Row and column must be between 0 and 2, and the cell must be empty.";
 		}
